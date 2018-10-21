@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Psychic-Game</title>
+    <link rel="stylesheet" type="text/css" href="../Psychic-Game/assets/css/style.css">
+</head>
+
+<body>
+    <div id="psychicAct">
+        <h1>The Psycic Game</h1>
+        <div id="results">
+            <p>Guess what letter I'm thinking of</p>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var compChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r",
+            "s", "t", "u", "v", "w", "x", "y ", "z"
+        ];
+        var win = 0;
+        var lose = 0;
+        var guessesLeft = 9;
+        var guessedLetters = [];
+
+        console.log(win);
+        console.log(lose);
+        console.log(guessesLeft)
+        console.log(guessedLetters);
+
+
+
+
+        document.onkeyup = function (event) {
+            var userGuess = event.key;
+            guessedLetters.push(userGuess);
+            console.log(userGuess);
+
+            var compG = compChoices[Math.floor(Math.random() * compChoices.length)];
+            console.log(compG);
+
+
+
+            if (userGuess === compG) {
+                win++;
+                guessesLeft = 9;
+            } else {
+                guessesLeft--;
+            }
+
+            if (guessesLeft === 0) {
+                lose++;
+                guessesLeft = 9;
+            }
+            var html = "<p>Guess what letter I'm thinking of</p>" +
+                "<p>Wins: " + win + "</p>" +
+                "<p>Loses: " + lose + "</p>" +
+                "<p>Guesses Remaining: " + guessesLeft + "</p>" +
+                "<p>Guessed Letter: " + guessedLetters.join(", ") + "</p>";
+
+            document.getElementById("results").innerHTML = html;
+        }
+    </script>
+
+
+
+
+</body>
+
+</html>
